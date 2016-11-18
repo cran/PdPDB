@@ -1,0 +1,9 @@
+0f940b73e60c0429946ca11ac519bb4c *DESCRIPTION
+1c410648c1c61be9e9fe77b3aabe965e *LICENSE
+6953fdc2f56558fbae4a70fb5987ea11 *NAMESPACE
+1df2df888448cda4af86d0a126885cba *R/PdPDB.R
+6a75aeeb3210078e68b628452f270f2c *R/arrangePatterns.R
+9acce6eefa3abba9e196c859498c1ced *R/checkLigand.R
+976a13992b0d9ac9651728f42c70b0b2 *exec/fileManager
+5b1ad8151fa4d9de67ca77d15169c30c *exec/findPatterns
+c5bd63b0a9c37e1d4e8988d3afd98522 *man/PdPDB.Rd

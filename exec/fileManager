@@ -1,0 +1,25 @@
+#! /bin/sh
+
+# How to use: fileManager 
+#
+# NAME
+# 	fileManager
+# SYNOPSIS
+#	fileManager
+
+# OUTPUT: backup directory with *.csv and *.log files
+
+date=$(date +"%m_%d_%Y_%T")
+
+if (test -f PdPDB.log); then 
+
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
+	mkdir "$date"; 
+	cp *.csv "$date" 2>/dev/null || : ; cp PdPDB.log "$date" 2>/dev/null || : ; 
+	echo "PdPDB backuped a job(s) results..." 
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
+
+fi
+
+
+# EOF
