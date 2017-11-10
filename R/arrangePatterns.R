@@ -14,7 +14,7 @@ arrangePatterns <- function(blockRaw, n){
   
   for (i in 1:end){
     
-    if(identical(substr(block[i,1], 5, 8), ".pdb")){
+    if((identical(substr(block[i,1], 5, 8), ".cif"))||(identical(substr(block[i,1], 5, 8), ".pdb"))||(identical(substr(block[i,1], 1, 7), "Warning"))){
       k<-k+1
     } #end if on block stats
     
@@ -25,29 +25,29 @@ arrangePatterns <- function(blockRaw, n){
         patterns[[k]] <- c(patterns[[k]], as.character(block[i,1]))
         
         if(identical(substr(toupper(as.character(block[i+1,1])),2,4),"HOH")) {
-          patterns[[k]] <- c(patterns[[k]], "...")
+          patterns[[k]] <- c(patterns[[k]], "+")
         }
         else{
           if(identical(substr(block[i,1], 1, 1), "(")){
             if(nchar(block[i,1])==5){ # aminos
               if(!(checkLigand(substr(block[i,1],2,4)))){
-                patterns[[k]] <- c(patterns[[k]], "...")
+                patterns[[k]] <- c(patterns[[k]], "+")
               } 
             }
             if(nchar(block[i,1])==4){ # rna nucleotides
               if(!(checkLigand(substr(block[i,1],2,3)))){
-                patterns[[k]] <- c(patterns[[k]], "...")
+                patterns[[k]] <- c(patterns[[k]], "+")
               }
             }
             if(nchar(block[i,1])==3){ # dna nucleotides
               if(!(checkLigand(substr(block[i,1],2,2)))){
-                patterns[[k]] <- c(patterns[[k]], "...")
+                patterns[[k]] <- c(patterns[[k]], "+")
               }
             }
           }
           else{
             if (as.character(block[i,2])!=as.character(block[i+1,2])){
-              patterns[[k]] <- c(patterns[[k]], "...")
+              patterns[[k]] <- c(patterns[[k]], "+")
             }
             else{
               if(((as.integer(block[i,3])-as.integer(block[i+1,3]))<(-1))&&(!is.na((as.integer(block[i,3])-as.integer(block[i+1,3]))))){

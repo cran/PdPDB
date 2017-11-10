@@ -7,17 +7,27 @@
 # SYNOPSIS
 #	fileManager
 
-# OUTPUT: backup directory with *.csv and *.log files
+# OUTPUT: backup directory with *.csv *.pdf and *.log files
 
 date=$(date +"%m_%d_%Y_%T")
 
-if (test -f PdPDB.log); then 
+if (test -f patterns.csv); then 
+
+
+	mkdir "$date"; 
+	mv *.csv "$date" 2>/dev/null || : ; cp PdPDB.log "$date" 2>/dev/null || : ; mv *.svg "$date" 2>/dev/null || :
+	cp "$date"/patterns.csv .	
+
+	rm -f *.tmp
 
 	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
-	mkdir "$date"; 
-	cp *.csv "$date" 2>/dev/null || : ; cp PdPDB.log "$date" 2>/dev/null || : ; 
-	echo "PdPDB backuped a job(s) results..." 
+	echo "PdPDB backuped a job..." 
 	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
+
+	grep -Eiwv 'alignment|exited' PdPDB.log > PdPDB.tmp
+	rm PdPDB.log
+	mv PdPDB.tmp PdPDB.log
+
 
 fi
 
